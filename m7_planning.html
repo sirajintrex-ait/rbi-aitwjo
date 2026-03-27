@@ -92,4 +92,226 @@
 
         .reference-text {
             font-size: 10px;
-            color:
+            color: #555;
+            margin-bottom: 12px;
+            font-weight: bold;
+        }
+
+        /* Yellow Collapsible Section */
+        .accordion-item {
+            border: 1px solid #ccc;
+            background-color: #fff;
+            margin-bottom: 15px;
+            border-radius: 4px;
+        }
+
+        .accordion-header {
+            background-color: #f7ca18;
+            padding: 5px 10px;
+            font-weight: bold;
+            font-size: 11px;
+            color: #333;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .accordion-content {
+            padding: 10px;
+            display: flex;
+            gap: 15px;
+        }
+
+        /* Left Toolbar Sidebar */
+        .sidebar-tools {
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+            width: 130px;
+            min-width: 130px;
+        }
+
+        .tag-row {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            font-weight: bold;
+            color: #b04a00;
+            font-size: 11px;
+            margin-bottom: 5px;
+        }
+
+        .btn-row {
+            display: flex;
+            gap: 4px;
+        }
+
+        button, .btn {
+            background-color: #fff;
+            border: 1px solid #aaa;
+            padding: 3px 6px;
+            font-size: 10px;
+            cursor: pointer;
+            border-radius: 3px;
+        }
+
+        button:hover {
+            background-color: #f0f0f0;
+        }
+
+        /* Planning Action Blocks Layout */
+        .form-area {
+            flex-grow: 1;
+        }
+
+        .blocks-row {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 10px;
+            margin-bottom: 10px;
+        }
+
+        .blocks-bottom-row {
+            display: grid;
+            grid-template-columns: 2fr 1.5fr;
+            gap: 10px;
+        }
+
+        .planning-block {
+            background-color: #e9ecef;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            padding: 10px;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            height: 38px;
+            cursor: pointer;
+        }
+
+        .planning-block:hover {
+            background-color: #dfdfdf;
+        }
+
+        .arrow-icon {
+            color: #d06519;
+            font-size: 11px;
+        }
+
+        .block-title {
+            color: #d06519;
+            font-weight: bold;
+            font-size: 11px;
+        }
+
+        .block-desc {
+            font-size: 9px;
+            color: #666;
+            margin-left: 3px;
+            font-weight: normal;
+        }
+
+        @media (max-width: 1024px) {
+            .blocks-row { grid-template-columns: repeat(2, 1fr); }
+            .blocks-bottom-row { grid-template-columns: 1fr; }
+        }
+
+        @media (max-width: 768px) {
+            .accordion-content { flex-direction: column; }
+            .blocks-row { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+
+    <header class="top-banner">
+        <h1>Pressure vessel RBI <span style="background-color: #3f88c5; padding: 2px 6px; font-size: 10px; border-radius: 3px;">File ▼</span></h1>
+        <div class="profile-section">
+            <div>OpenStandard_RBI <br> <span style="font-size: 9px;">27 Mar 2026 16:51</span></div>
+            <div style="font-size: 16px;">☁️</div>
+        </div>
+    </header>
+
+    <nav class="nav-tabs">
+        <div class="tab"><span class="status-dot dot-green"></span>M1 Asset</div>
+        <div class="tab"><span class="status-dot dot-green"></span>M2 Chemistry</div>
+        <div class="tab"><span class="status-dot dot-green"></span>M3 Damage</div>
+        <div class="tab"><span class="status-dot dot-green"></span>M4 Release</div>
+        <div class="tab"><span class="status-dot dot-green"></span>M5 Consequence</div>
+        <div class="tab"><span class="status-dot dot-green"></span>M6 Risk consequences</div>
+        <div class="tab active"><span class="status-dot dot-green"></span>M7 Planning</div>
+        <div class="tab"><span class="status-dot dot-green"></span>M8 History</div>
+        <div class="tab"><span class="status-dot dot-green"></span>M9 Report</div>
+        <div class="tab"><span class="status-dot dot-gray"></span>M10 Inspection test plan</div>
+    </nav>
+
+    <div class="container">
+        <h2 class="module-header">Module 7 — Planning</h2>
+        <p class="reference-text">Ref: PCC-3 §10 Risk Management With Inspection Activities; API 580 inspection plan, inspection interval</p>
+
+        <div class="accordion-item">
+            <div class="accordion-header">
+                ▶ V-1001
+            </div>
+            <div class="accordion-content">
+
+                <div class="sidebar-tools">
+                    <div class="tag-row">
+                        <span>V-1001</span>
+                        <button style="padding: 2px 5px;">Refresh</button>
+                    </div>
+                    <div class="btn-row">
+                        <button>📋</button>
+                        <button>💾</button>
+                        <button>🗑️</button>
+                    </div>
+                    <div class="btn-row">
+                        <button>Save CSV</button>
+                        <button>Load</button>
+                    </div>
+                </div>
+
+                <div class="form-area">
+
+                    <div class="blocks-row">
+                        <div class="planning-block">
+                            <span class="arrow-icon">▶</span>
+                            <span>📋</span>
+                            <span class="block-title">Basic Info</span>
+                        </div>
+
+                        <div class="planning-block">
+                            <span class="arrow-icon">▶</span>
+                            <span>✏️</span>
+                            <span class="block-title">Design Conditions</span>
+                        </div>
+
+                        <div class="planning-block">
+                            <span class="arrow-icon">▶</span>
+                            <span>📅</span>
+                            <span class="block-title">Inspection Frequency <span class="block-desc">(as per Demo rules -> planning) (PCC-3 §10, API 580 inspection plan)</span></span>
+                        </div>
+                    </div>
+
+                    <div class="blocks-bottom-row">
+                        <div class="planning-block">
+                            <span class="arrow-icon">▶</span>
+                            <span>📋</span>
+                            <span class="block-title">Inspection plan</span>
+                        </div>
+
+                        <div class="planning-block">
+                            <span class="arrow-icon">▶</span>
+                            <span>🔍</span>
+                            <span class="block-title">Inspection Methods <span class="block-desc">(as per Demo rules -> inspectionMethod)</span> <span style="color:#d06519; font-weight: bold;">(as per inspection_method.json)</span></span>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>

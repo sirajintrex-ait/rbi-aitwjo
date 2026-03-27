@@ -82,7 +82,7 @@
       border-bottom: 2px solid #d47519; /* Orange bottom dividing line */
     }
 
-    /* Standard Tab styling */
+    /* Standard Tab styling as Anchor tags */
     .tab {
       display: flex;
       align-items: center;
@@ -97,6 +97,7 @@
       color: #333;
       cursor: pointer;
       white-space: nowrap;
+      text-decoration: none; /* Strip standard hyperlink styling */
     }
 
     .tab:hover {
@@ -149,64 +150,57 @@
     <div class="brand-right">
       <div class="brand-right-text">
         <span style="font-weight: bold;">OpenStandard_RBI</span><br>
-        27 Mar 2026 10:13
+        27 Mar 2026 15:13
       </div>
       <div class="weather-box">⛅</div>
     </div>
   </div>
 
   <div class="nav-tabs">
-    <div class="tab" onclick="switchView('M1')">
+    <a href="M1%20Asset.html" class="tab">
       <span class="dot dot-green"></span> M1 Asset
-    </div>
+    </a>
     
-    <div class="tab active" onclick="switchView('M2')">
-      <span class="dot dot-green"></span> M2_Chemistry
-    </div>
+    <a href="M2_Chemistry.html" class="tab">
+      <span class="dot dot-green"></span> M2 Chemistry
+    </a>
     
-    <div class="tab" onclick="switchView('M3')">
-      <span class="dot dot-green"></span> M3_Damage
-    </div>
+    <a href="M3_damage.html" class="tab">
+      <span class="dot dot-green"></span> M3 Damage
+    </a>
     
-    <div class="tab" onclick="switchView('M4')">
-      <span class="dot dot-green"></span> M4_Release
-    </div>
+    <a href="M4_release.html" class="tab">
+      <span class="dot dot-green"></span> M4 Release
+    </a>
     
-    <div class="tab" onclick="switchView('M5')">
-      <span class="dot dot-green"></span> M5_Consequence
-    </div>
+    <a href="M5_Consequence%20Aggregation.html" class="tab">
+      <span class="dot dot-green"></span> M5 Consequence
+    </a>
     
-    <div class="tab" onclick="switchView('M6')">
-      <span class="dot dot-green"></span> M6_Risk consequences
-    </div>
+    <a href="M6_Risk%20Consequences%20Scoring%20&%20Position.html" class="tab">
+      <span class="dot dot-green"></span> M6 Risk consequences
+    </a>
     
-    <div class="tab" onclick="switchView('M7')">
-      <span class="dot dot-green"></span> M7_Planning
-    </div>
+    <a href="M7_Planning.html" class="tab">
+      <span class="dot dot-green"></span> M7 Planning
+    </a>
     
-    <div class="tab" onclick="switchView('M8')">
-      <span class="dot dot-green"></span> M8_History
-    </div>
+    <a href="M8_History.html" class="tab">
+      <span class="dot dot-green"></span> M8 History
+    </a>
     
-    <div class="tab" onclick="switchView('M9')">
-      <span class="dot dot-green"></span> M9_Report
-    </div>
+    <a href="M9_Report.html" class="tab">
+      <span class="dot dot-green"></span> M9 Report
+    </a>
     
-    <div class="tab" onclick="switchView('M10')">
+    <a href="M10_Inspection%20Test%20Plan.html" class="tab">
       <span class="dot dot-gray"></span> M10 Inspection test plan
-    </div>
+    </a>
   </div>
 
   <div class="library-bar">
     📚 LIBRARIES ▶
   </div>
-
-  <script>
-    function switchView(module) {
-      alert("Loading view panel for " + module);
-      // Your routing logic to switch table visibility goes here!
-    }
-  </script>
 
 </body>
 </html>

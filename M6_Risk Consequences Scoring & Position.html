@@ -1,0 +1,202 @@
+<div class="module-header">
+  <h2 class="module-title">Module 6 — Risk Consequences Scoring & Position</h2>
+  <span class="module-ref">Ref: PCC-3 §9 Risk Determination and Management; API 580 §9-10 POF/COF for RBI; API 581 §4.1 PoF (GFF×FMS×DF), §4.2 CoF, risk matrix</span>
+</div>
+
+<div class="panel">
+  <div class="panel-body">
+
+    <div class="form-container">
+
+      <div class="toolbar-vertical">
+        <span class="tag-label">V-1001</span>
+        <div class="toolbar-actions">
+          <button type="button" class="btn btn-yellow">Refresh</button>
+          <button type="button" class="btn btn-icon">📋</button>
+          <button type="button" class="btn btn-icon">💾</button>
+          <button type="button" class="btn btn-icon">🗑️</button>
+        </div>
+        <div class="toolbar-actions">
+          <button type="button" class="btn">Save CSV</button>
+          <button type="button" class="btn">Load</button>
+        </div>
+      </div>
+
+      <div class="form-workspace">
+
+        <div class="form-grid-three-col">
+
+          <div class="form-card inherited-card">
+            <div class="card-header">▶ Maximum Consequence Areas <span class="api-ref">(from M5)</span></div>
+            <div class="card-body">
+              <span class="sub-label">Complete M5 and Build Consequence Models to see areas here</span>
+            </div>
+          </div>
+
+          <div class="form-card">
+            <div class="card-header">▶ Consequence of Failure (CoF) <span class="api-ref">(as per Demo rules -> Risk consequences)</span></div>
+            <div class="card-body">
+              <span class="sub-label">One rating per dimension (A - Low to E - High).</span>
+              
+              <div class="form-grid-two-col">
+                <div class="form-group">
+                  <label>Safety <span>Safety consequence (Low to High).</span></label>
+                  <select><option value="A">A | A (Low | minor injury first aid)</option></select>
+                </div>
+                <div class="form-group">
+                  <label>Environment <span>Environmental impact of release: spill extent, soil/water/air contamination...</span></label>
+                  <select><option value="A">A | A (Low | Minor spill, contained, no lasting impact)</option></select>
+                </div>
+                <div class="form-group">
+                  <label>Financial <span>Financial impact of failure: direct repair/replacement cost, production loss...</span></label>
+                  <select><option value="A">A | A (Low | Minor cost, localized repair)</option></select>
+                </div>
+                <div class="form-group">
+                  <label>Public image <span>Public image and reputational consequence: media coverage, stakeholder trust...</span></label>
+                  <select><option value="A">A | A (Low | Internal only, no external attention)</option></select>
+                </div>
+                <div class="form-group">
+                  <label>Repair costs <span>Direct repair and replacement costs: labour, materials, access...</span></label>
+                  <select><option value="A">A | A (Low | Minor repair, in-house or small contractor)</option></select>
+                </div>
+                <div class="form-group">
+                  <label>Fines & Legal costs <span>Fines, penalties, and legal costs: regulatory sanctions, litigation...</span></label>
+                  <select><option value="A">A | A (Low | No enforcement, minor compliance issues)</option></select>
+                </div>
+              </div>
+
+              <div class="form-group highlight-box">
+                <label>📌 Driving consequence <span>Select the consequence rating (A-E) and which dimension is driving.</span></label>
+                <div class="form-row">
+                  <div class="form-group">
+                    <label>Driving consequence (A-E)</label>
+                    <select><option value="A">A - Low</option></select>
+                  </div>
+                  <div class="form-group">
+                    <label>Consequence dimension</label>
+                    <select><option value="">— select —</option></select>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label>Comments</label>
+                  <textarea rows="2" placeholder="Comments on risk position / driving consequence..."></textarea>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="form-card">
+            <div class="card-header">▶ Probability of Failure (PoF) <span class="api-ref">(as per Demo rules -> Risk consequences)</span></div>
+            <div class="card-body scrolling-vertical">
+              
+              <div class="form-row">
+                <div class="form-group">
+                  <label>Overall PoF (1-5)</label>
+                  <select><option value="">— Auto from factors —</option></select>
+                </div>
+                <div class="form-group">
+                  <label>Damage mechanisms (filter)</label>
+                  <select><option value="">— Select mechanism —</option></select>
+                </div>
+              </div>
+
+              <div class="form-group collapsible-box">
+                <label>Thinning PoF from M3</label>
+                <div class="table-micro">
+                  <div class="table-micro-row"><span>Calculation title</span><input type="text" value="Calc 1" disabled></div>
+                  <div class="table-micro-row"><span>Component type</span><input type="text" value="Shell (UG-27(c)) — factor 0.6" disabled></div>
+                  <div class="table-micro-row"><span>Internal Diameter Di (mm)</span><input type="text" disabled></div>
+                  <div class="table-micro-row"><span>Remaining wall (mm)</span><input type="text" disabled></div>
+                  <div class="table-micro-row"><span>PoF calculated</span><input type="text" disabled></div>
+                </div>
+              </div>
+
+              <div class="form-group collapsible-box">
+                <label>Cracking PoF from M3</label>
+                <div class="table-micro">
+                  <div class="table-micro-row"><span>Calculation title</span><input type="text" value="Cracking 1" disabled></div>
+                  <div class="table-micro-row"><span>PoF calculated</span><input type="text" disabled></div>
+                </div>
+              </div>
+
+            </div>
+          </div>
+
+        </div>
+
+        <div class="form-card">
+          <div class="card-header">🎯 Risk Position</div>
+          <div class="card-body">
+            <div class="form-row-summary">
+              <div class="form-group-horizontal">
+                <label>Driving consequence</label>
+                <input type="text" value="A" readonly disabled>
+              </div>
+              <div class="form-group-horizontal">
+                <label>Overall PoF (1-5)</label>
+                <input type="text" value="—" readonly disabled>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="form-grid-two-col">
+
+          <div class="form-card">
+            <div class="card-header">📊 Risk Matrix <span class="api-ref">(as per Demo rules -> riskMatrix)</span></div>
+            <div class="card-body">
+              <span class="sub-label">CoF (A-E) across top. PoF (1-5) down left. Load Risk Matrix.json to customize.</span>
+              
+              <table class="matrix-table">
+                <thead>
+                  <tr>
+                    <th>PoF \ CoF</th>
+                    <th>A</th>
+                    <th>B</th>
+                    <th>C</th>
+                    <th>D</th>
+                    <th>E</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr><td>1</td><td>A1</td><td>B1</td><td>C1</td><td>D1</td><td>E1</td></tr>
+                  <tr><td>2</td><td>A2</td><td>B2</td><td>C2</td><td>D2</td><td>E2</td></tr>
+                  <tr><td>3</td><td>A3</td><td>B3</td><td>C3</td><td>D3</td><td>E3</td></tr>
+                  <tr><td>4</td><td>A4</td><td>B4</td><td>C4</td><td>D4</td><td>E4</td></tr>
+                  <tr><td>5</td><td>A5</td><td>B5</td><td>C5</td><td>D5</td><td>E5</td></tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+          <div class="form-card">
+            <div class="card-header">📋 From risk score (M6) and planning.json</div>
+            <div class="card-body">
+              <div class="form-group">
+                <label>Driving consequence (A-E)</label>
+                <input type="text" value="A - Low" readonly disabled>
+              </div>
+              <div class="form-group">
+                <label>Consequence dimension</label>
+                <input type="text" value="—" readonly disabled>
+              </div>
+              <div class="form-group">
+                <label>Risk Score</label>
+                <input type="text" value="—" readonly disabled>
+              </div>
+              <div class="form-group">
+                <label>Recommended Interval</label>
+                <input type="text" value="—" readonly disabled>
+              </div>
+              <span class="sub-label">Complete CoF and PoF in M6 to get a risk score.</span>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+</div>

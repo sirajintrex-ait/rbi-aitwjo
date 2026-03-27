@@ -1,162 +1,142 @@
-<div class="module-header">
-  <h2 class="module-title">Module 9 — Report</h2>
-</div>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pressure Vessel RBI - Module 9 Report</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
 
-<div class="panel">
-  <div class="panel-body">
+        body {
+            background-color: #e6e6e6;
+            color: #333;
+            font-size: 11px;
+        }
 
-    <div class="form-container">
+        /* Top Orange Banner */
+        .top-banner {
+            background-color: #c45a11;
+            color: white;
+            padding: 6px 15px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
 
-      <div class="toolbar-vertical">
-        <span class="tag-label">V-1001</span>
-        <div class="toolbar-actions">
-          <button type="button" class="btn btn-yellow">Refresh</button>
-          <button type="button" class="btn btn-icon">📋</button>
-          <button type="button" class="btn btn-icon">💾</button>
-          <button type="button" class="btn btn-icon">🗑️</button>
-        </div>
-        <div class="toolbar-actions">
-          <button type="button" class="btn">Save CSV</button>
-          <button type="button" class="btn">Load</button>
-        </div>
-      </div>
+        .top-banner h1 {
+            font-size: 15px;
+            font-weight: bold;
+        }
 
-      <div class="form-workspace">
+        .profile-section {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-size: 10px;
+        }
 
-        <div class="status-bar">
-          <div class="status-bar-left">
-            <button type="button" class="btn btn-orange">Produce report</button>
-            <button type="button" class="btn btn-sm">🖨️ Print</button>
-          </div>
-          <span class="status-indicator">Click Produce report to generate the report. Section 1: M1–M2. Section 2: M3–M4. Section 3: M5–M6. Section 4: M7. (M8 History is not included.)</span>
-        </div>
+        /* Navigation Tabs */
+        .nav-tabs {
+            background-color: #d9d9d9;
+            padding: 4px 10px;
+            display: flex;
+            gap: 4px;
+            border-bottom: 1px solid #b3b3b3;
+            overflow-x: auto;
+        }
 
-        <div class="form-card report-card">
-          <div class="card-header">Report body</div>
-          
-          <div class="card-body report-preview scrolling-vertical">
+        .tab {
+            background-color: #fff;
+            border: 1px solid #ccc;
+            border-radius: 12px;
+            padding: 3px 10px;
+            font-size: 10px;
+            display: flex;
+            align-items: center;
+            gap: 4px;
+            cursor: pointer;
+            white-space: nowrap;
+        }
 
-            <div class="report-section header-section">
-              <h3>Risk Based Inspection Report for "V-1001 Overhead Accumulator" — Location <span class="api-ref">(as per location.json)</span>: Horse Shoe Falls / Dehydration / System 1</h3>
-              <p><strong>Final risk:</strong> A0</p>
-            </div>
+        .tab.active {
+            background-color: #ffebcc;
+            border-color: #fca311;
+        }
 
-            <div class="report-section">
-              <h4>Section 1 — Design and process chemistry</h4>
-              <p class="summary-text">This section summarizes the asset design data (Module 1) and process chemistry (Module 2) used for this assessment. The items under assessment is <strong>V-1001</strong>, Overhead Accumulator, a pressure vessel located at Horse Shoe Falls; Dehydration. Overhead accumulator downstream of air cooler. The design and operating conditions recorded here define the pressure and temperature envelope and wall thickness basic used for damage mechanism screening and thickness calculations (8.27 MPa, 343 °C, 41.3 mm, 1.6 mm). Process chemistry describes the fluids contained or handled (flammable, toxic, and corrosive components) and supports release rate and consequence modelling. Representative fluid selection and mixture properties align with API 581 methodology for use in orifice and dispersion calculations in later modules. Design conditions are consistent with pressure vessel design codes (e.g. ASME VIII-1) where nominal thickness and corrosion allowance are reported; operating conditions reflect the actual or intended service (7.584 MPa, 111 °C). Together, this design and chemistry basis defines what is being modelled and the standards and assumptions used for this risk-based inspection assessment.</p>
-              
-              <div class="report-subsection">
-                <h5>Asset register (M1)</h5>
-                <p>The equipment is identified as <strong>V-1001</strong> — Overhead Accumulator. Equipment type: Pressure Vessel. Overhead accumulator downstream of air cooler</p>
-                <ul class="report-list">
-                  <li>Location: Site / facility: Horse Shoe Falls; Unit / area: Dehydration; System: System 1</li>
-                  <li>Design temperature: 343 °C</li>
-                  <li>Design pressure: 8.27 MPa</li>
-                  <li>Nominal thickness: 41.3 mm</li>
-                  <li>Corrosion allowance: 1.6 mm</li>
-                  <li>Operating pressure: 7.584 MPa</li>
-                  <li>Operating temperature: 111 °C</li>
-                  <li>Vessel liquid level: 60 %</li>
-                </ul>
-              </div>
+        .status-dot {
+            height: 7px;
+            width: 7px;
+            border-radius: 50%;
+            display: inline-block;
+        }
 
-              <div class="report-subsection">
-                <h5>Process chemistry (M2)</h5>
-                <p>Design pressure used for chemistry: 7.584 MPa.</p>
-                <p><strong>Equations and standards used</strong><br>Where an equation or standard is used, the method is described below with the inputs used and the results obtained.</p>
-                <p><strong>Design basis (ASME VIII-1).</strong> Pressure vessel design conditions and wall thickness are reported per the applicable design code. <strong>Inputs:</strong> design pressure 8.27 MPa, design temperature 343 °C. <strong>Results (reported):</strong> nominal thickness 41.3 mm, corrosion allowance 1.6 mm.</p>
-              </div>
-            </div>
+        .dot-green { background-color: #28a745; }
+        .dot-gray { background-color: #a0a0a0; }
 
-            <div class="report-section">
-              <h4>Section 2 — Damage mechanisms and release (M3 and M4)</h4>
-              <p class="summary-text">This section summarizes the damage mechanism assessment (Module 3) and release rate estimation (Module 4) used for this assessment. Credible damage mechanisms are screened and selected per PCC-3 §6 and Appendix B; minimum wall thickness and other calculations support probability-of-failure inputs for risk. Release rates are estimated for standard hole sizes using orifice flow models (liquid, gas, or two-phase as applicable) and the representative fluid and conditions from Section 1. Phase at release (liquid). Rates by hole size feed consequence modelling and the selection of a hole-for-damage scenario. PCC-3 §8 and API 581 guidance are used for release characterisation and time-to-empty (instantaneous vs continuous).</p>
-              
-              <div class="report-subsection">
-                <h5>Damage mechanisms (M3)</h5>
-                <p><strong>Thinning — minimum wall thickness calculations:</strong></p>
-                <ul class="report-list">
-                  <li>— — component: shell, material: —, measured thickness: —, corrosion rate: —</li>
-                </ul>
-                <p><strong>Cracking calculations:</strong></p>
-                <ul class="report-list">
-                  <li>— — component: shell</li>
-                </ul>
-                <p><strong>Other mechanism calculations:</strong></p>
-                <ul class="report-list">
-                  <li>— — component: shell</li>
-                </ul>
-              </div>
+        /* Main Container */
+        .container {
+            padding: 12px;
+        }
 
-              <div class="report-subsection">
-                <h5>Release (M4)</h5>
-                <p>Phase at release: liquid. Storage/operating pressure 7.584 MPa. Storage/operating temperature 111 °C. Back pressure 0.101325 MPa. Discharge coefficient C<sub>d</sub> 0.61.</p>
-                <p><strong>No release scenario or hole data. Complete Module 4 and run calculations to populate.</strong></p>
-                <p><strong>Equations and standards used (Section 2)</strong><br>Damage and release assessment in this section use the following standards and equations as applicable: <strong>PCC-3 (API Recommended Practice 581, Risk-Based Inspection Methodology)</strong> for damage mechanism screening (§6, Appendix B), release characterization and time-to-empty criteria (§8). <strong>API 581</strong> for release rate methodology, hole sizes and instantaneous/continuous classification. <strong>ASME VIII-1</strong> for minimum wall thickness and pressure design equations. Where an equation or standard is used, the method is described below with inputs and results.</p>
-                <p><strong>Minimum wall thickness (ASME VIII-1).</strong> Minimum thickness and minimum thickness for pressure parts are calculated per ASME VIII Division 1 (e.g. UG-27(c) for shell, UG-32 for heads). PCC-3/API 581 use remaining thickness and corrosion rate from these calculations for probability-of-failure inputs. <strong>Inputs:</strong> design pressure, design temperature, nominal thickness, corrosion allowance (from M1), component geometry and material. <strong>Results:</strong> minimum required thickness; remaining thickness and corrosion rate support PoF scoring.</p>
-                <p><strong>Damage mechanism screening (PCC-3 §6, Appendix B).</strong> Credible damage mechanisms are screened and selected per API 581 PCC-3 Section 6 and Appendix B (material group, temperature range, process environment, loading). <strong>Inputs:</strong> screening library. <strong>Results:</strong> selected mechanisms list used for inspection planning and PoF.</p>
-              </div>
-            </div>
+        .module-header {
+            color: #b04a00;
+            font-size: 13px;
+            font-weight: bold;
+            margin-bottom: 4px;
+        }
 
-            <div class="report-section">
-              <h4>Section 3 — Consequence and risk (M5 and M6)</h4>
-              <p class="summary-text">This section summarizes the consequence of failure assessment (Module 5) and risk scoring (Module 6). Consequence types (flammable, toxic, NFNT) and modelled areas/distances feed the CoF dimensions and area-affected band; the driving consequence and PoF combine to give risk cell and level. PCC-3 §8-9 and the risk matrix (from Reference Libraries) are used.</p>
-              <p class="summary-text"><strong>Probability of failure (API 581).</strong> Working PoF = GFF × FMS × DF. <strong>GFF</strong> - generic failure frequency (failures/yr) from GFF library or M5 Generic failure; <strong>FMS</strong> - management systems factor from the Management questionnaire; <strong>DF</strong> - damage factor (adjusted) from min wall, cracking or other mechanism calculations. The numeric working PoF is mapped to a 1–5 score via the PoF Mapping bands (Reference libraries).</p>
-              
-              <div class="report-subsection">
-                <h5>Consequence of failure (M5)</h5>
-                <p>Consequence types selected: Flammable: — Toxic: — Non-flammable non-toxic: —</p>
-                <p><strong>Maximum Consequence Areas (from M5)</strong><br>No consequence data. Complete M5 and build consequence models to populate.</p>
-              </div>
+        /* Yellow Collapsible Section */
+        .accordion-item {
+            border: 1px solid #ccc;
+            background-color: #fff;
+            margin-bottom: 15px;
+            border-radius: 4px;
+        }
 
-              <div class="report-subsection">
-                <h5>Risk scoring (M6)</h5>
-                <p>Risk score (cell): A0; CoF category: 1; PoF total: Product risk; Risk level: <strong>A0</strong>.<br>Driving consequence: A.</p>
-                <p><strong>CoF dimension ratings:</strong></p>
-                <ul class="report-list">
-                  <li>Safety: A</li>
-                  <li>Environment: A</li>
-                  <li>Financial: A</li>
-                  <li>Public image: A</li>
-                  <li>Repair costs: A</li>
-                  <li>Fines & Legal costs: A</li>
-                </ul>
-                <p><strong>PoF factor scores:</strong></p>
-                <p><strong>Dimension scores (numeric):</strong></p>
-                <ul class="report-list">
-                  <li>safety: 1</li>
-                  <li>environment: 1</li>
-                  <li>financial: 1</li>
-                  <li>public_image: 1</li>
-                  <li>repair_costs: 1</li>
-                  <li>fines_legal: 1</li>
-                  <li>area_affected: —</li>
-                </ul>
-              </div>
-            </div>
+        .accordion-header {
+            background-color: #f7ca18;
+            padding: 5px 10px;
+            font-weight: bold;
+            font-size: 11px;
+            color: #333;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
 
-            <div class="report-section">
-              <h4>Section 4 — Planning (M7)</h4>
-              <p class="summary-text">This section summarizes the inspection planning (Module 7). The recommended inspection interval is derived from the risk cell and planning library (e.g. planning.json). The inspection plan table lists each damage-mechanism calculation with frequency, comment, type and inspection method. Selected inspection methods for use are included.</p>
-              
-              <div class="report-subsection">
-                <h5>Planning (M7)</h5>
-                <p>Risk score (cell): A0; Recommended inspection interval: —.</p>
-                <p><strong>Inspection plan (calculation, component, mechanism, PoF, material, frequency, comment, type, inspection method):</strong></p>
-                <ul class="report-list">
-                  <li>Min wall — —: Shell (UG-27(c)) — factor 0.6, Thinning, PoF —, material —, freq yrs, comment "", type Internal, inspection A-Scan</li>
-                  <li>Cracking — —: Shell (UG-27(c)) — factor 0.6, —, PoF —, material —, freq yrs, comment "", type Internal, inspection Dye Penetrant Testing</li>
-                  <li>Other — —: Shell (UG-27(c)) — factor 0.6, —, PoF —, material —, freq yrs, comment "", type Internal, inspection Bench Test</li>
-                </ul>
-              </div>
-            </div>
+        .accordion-content {
+            padding: 10px;
+            display: flex;
+            gap: 15px;
+        }
 
-          </div>
-        </div>
+        /* Left Toolbar Sidebar */
+        .sidebar-tools {
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+            width: 130px;
+            min-width: 130px;
+        }
 
-      </div>
+        .tag-row {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            font-weight: bold;
+            color: #b04a00;
+            font-size: 11px;
+            margin-bottom: 5px;
+        }
 
-    </div>
+        .btn-row {
+            display: flex;
+            gap: 4px;
+        }
 
-  </div>
-</div>
+        button

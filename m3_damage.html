@@ -1,71 +1,42 @@
-<div class="module-header">
-  <h2 class="module-title">Module 3 — Damage Mechanism Estimator</h2>
-  <span class="module-ref">Ref: PCC-3 §6 Damage Mechanisms and Failure Modes, Appendix B Screening Table; API 580 damage mechanism review; API 571 damage mechanisms</span>
+<!DOCTYPE html>
+<html>
+<head>
+    <title>RBI - Module 3</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<div class="header">
+    <h1>Pressure Vessel RBI</h1>
 </div>
 
-<div class="panel">
-  <div class="panel-header">
-    <span class="arrow">▼</span> V-1001
-  </div>
-  
-  <div class="panel-body">
-    <div class="toolbar">
-      <div class="toolbar-left">
-        <span class="tag-label">V-1001</span>
-        <button type="button" class="btn btn-yellow">Refresh</button>
-        <button type="button" class="btn btn-icon">📋</button>
-        <button type="button" class="btn btn-icon">💾</button>
-        <button type="button" class="btn btn-icon">🗑️</button>
-        <div class="toolbar-break"></div>
-        <button type="button" class="btn">Save CSV</button>
-        <button type="button" class="btn">Load</button>
-      </div>
-
-      <form class="rbi-form" id="module3-form">
-        
-        <div class="form-row banner-row">
-          <div class="form-group-horizontal inherited">
-            <label><span>From M1:</span> Nominal thickness:</label>
-            <input type="text" value="41.3 mm" readonly disabled>
-          </div>
-
-          <div class="form-group-horizontal inherited">
-            <label>Corrosion allowance:</label>
-            <input type="text" value="1.6 mm" readonly disabled>
-          </div>
-
-          <div class="form-group-horizontal inherited">
-            <label>Design pressure:</label>
-            <input type="text" value="8.27 MPa" readonly disabled>
-          </div>
-        </div>
-
-        <div class="form-row toggle-row">
-          
-          <button type="button" class="toggle-btn has-info">
-            <span class="toggle-title">▶ Thinning <span class="sub-text">(as per Demo rules -> materials) (PCC-3 §6, API 571, ASME VIII-1)</span></span>
-            <span class="info-icon">ℹ️</span>
-          </button>
-
-          <button type="button" class="toggle-btn">
-            <span class="toggle-title">▶ Cracking <span class="sub-text">(PCC-3 §6, API 571)</span></span>
-          </button>
-
-          <button type="button" class="toggle-btn">
-            <span class="toggle-title">▶ Other <span class="sub-text">(PCC-3 §6, API 571)</span></span>
-          </button>
-
-          <button type="button" class="toggle-btn">
-            <span class="toggle-title">▶ Generic failure <span class="sub-text">(API 581 §4.1.2 GFF, Eq 1.1)</span></span>
-          </button>
-
-          <button type="button" class="toggle-btn">
-            <span class="toggle-title">▶ full damage mechanism list <span class="sub-text">(as per Demo rules -> damage) (PCC-3 §6, Appendix A/B, API 571)</span></span>
-          </button>
-
-        </div>
-        
-      </form>
-    </div>
-  </div>
+<div class="navbar">
+    <button onclick="location.href='module1.html'">M1 Asset</button>
+    <button onclick="location.href='module2.html'">M2 Chemistry</button>
+    <button class="active">M3 Damage</button>
 </div>
+
+<div class="container">
+
+<div class="module-title">Module 3 — Damage Mechanism Estimator</div>
+
+<div class="card">
+    <p><b>Nominal Thickness:</b> 41.3 mm</p>
+    <p><b>Corrosion Allowance:</b> 1.6 mm</p>
+    <p><b>Design Pressure:</b> 8.27 MPa</p>
+</div>
+
+<div class="grid grid-2">
+
+<div class="option-box">⬇ Thinning</div>
+<div class="option-box">⚡ Cracking</div>
+<div class="option-box">🔧 Other</div>
+<div class="option-box">📊 Generic Failure</div>
+<div class="option-box">📚 Full Damage Mechanism List</div>
+
+</div>
+
+</div>
+
+</body>
+</html>

@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>RBI — Module 1 Asset Register</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <header class="module-header">
+    <div class="module-title">Module 1 — Asset Register</div>
+    <div class="module-ref">Ref: API 580 (RBI program, equipment data); PCC-3 §5 Data and Information Collection</div>
+  </header>
+
+  <div class="panel">
+    <div class="panel-header">
+      ▼ V-1001
+    </div>
+    <div class="panel-body">
+
+      <div class="toolbar">
+        <span style="color:var(--accent-orange); font-weight:bold;">V-1001</span>
+        <button id="btn-refresh" class="btn btn-yellow">Refresh</button>
+        <button id="btn-copy" class="btn">📄</button>
+        <button id="btn-save-db" class="btn">💾 Save to DB</button>
+        <button id="btn-save-csv" class="btn">Save CSV</button>
+        <button id="btn-load" class="btn">Load</button>
+
+        <label for="eq_tag">Equipment Tag <span>(API 580)</span></label>
+        <input type="text" id="eq_tag" value="V-1001" style="padding: 5px; width: 100px;">
+      </div>
+
+      <form id="asset-form" class="form-grid">
+
+        <div class="field-group">
+          <label>Vessel Name <span>(API 580)</span></label>
+          <input type="text" id="vessel_name" value="Overhead Accumulator">
+        </div>
+
+        <div class="field-group">
+          <label>Description <span>(PCC-3 §5)</span></label>
+          <input type="text" id="description" value="Overhead accumulator downstream of air cooler">
+        </div>
+
+        <div class="field-group">
+          <label>Equipment Type <span>(API 581)</span></label>
+          <select id="equipment_type">
+            <option value="Pressure Vessel" selected>Pressure Vessel</option>
+            <option value="Storage Tank">Storage Tank</option>
+            <option value="Piping">Piping</option>
+          </select>
+        </div>
+
+        <div class="field-group">
+          <label>Site / Facility <span>(Demo rules)</span></label>
+          <select id="site_facility">
+            <option value="Horse Shoe Falls" selected>Horse Shoe Falls</option>
+            <option value="Niagara">Niagara</option>
+          </select>
+        </div>
+
+        <div class="field-group">
+          <label>Unit / Area</label>
+          <select id="unit_area">
+            <option value="Dehydration" selected>Dehydration</option>
+            <option value="Crude">Crude</option>
+          </select>
+        </div>
+
+        <div class="field-group">
+          <label>System</label>
+          <select id="system_name">
+            <option value="System 1" selected>System 1</option>
+            <option value="System 2">System 2</option>
+          </select>
+        </div>
+
+        <div class="field-group">
+          <label>Design Temperature (°C)</label>
+          <input type="number" id="design_temperature_c" value="343" step="any">
+        </div>
+
+        <div class="field-group">
+          <label>Design Pressure (MPa)</label>
+          <input type="number" id="design_pressure_mpa" value="8.27" step="any">
+        </div>
+
+        <div class="field-group">
+          <label>Nominal Thickness (mm)</label>
+          <input type="number" id="nominal_thickness_mm" value="41.3" step="any">
+        </div>
+
+        <div class="field-group">
+          <label>Corrosion Allowance (mm)</label>
+          <input type="number" id="corrosion_allowance_mm" value="1.6" step="any">
+        </div>
+
+        <div class="field-group">
+          <label>Operating Pressure (MPa)</label>
+          <input type="number" id="operating_pressure_mpa" value="7.584" step="any">
+        </div>
+
+        <div class="field-group">
+          <label>Operating Temperature (°C)</label>
+          <input type="number" id="operating_temperature_c" value="111" step="any">
+        </div>
+
+        <div class="field-group">
+          <label>Vessel % liquid level</label>
+          <input type="number" id="vessel_liquid_level_percent" value="60" step="any">
+        </div>
+
+      </form>
+
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="script.js"></script>
+</body>
+</html>

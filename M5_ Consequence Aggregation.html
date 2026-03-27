@@ -1,0 +1,120 @@
+<div class="module-header">
+  <h2 class="module-title">Module 5 — Consequence Aggregation</h2>
+  <span class="module-ref">Ref: PCC-3 §8 Determining Consequence of Failure; API 581 Part 3 Level 1 COF, consequence areas</span>
+</div>
+
+<div class="panel">
+  
+  <div class="panel-body">
+
+    <div class="form-container">
+
+      <div class="toolbar-vertical">
+        <span class="tag-label">V-1001</span>
+        <div class="toolbar-actions">
+          <button type="button" class="btn btn-yellow">Refresh</button>
+          <button type="button" class="btn btn-icon">📋</button>
+          <button type="button" class="btn btn-icon">💾</button>
+          <button type="button" class="btn btn-icon">🗑️</button>
+        </div>
+        <div class="toolbar-actions">
+          <button type="button" class="btn">Save CSV</button>
+          <button type="button" class="btn">Load</button>
+        </div>
+      </div>
+
+      <div class="form-workspace">
+
+        <div class="form-card inherited-card">
+          <div class="card-header">
+            📥 Inherited from M4 — Release
+          </div>
+          <div class="card-body">
+            <span class="sub-label">Consequence from Area Affected.json. Double-click a row in Maximum Consequence Areas below to select hole size for damage scenario.</span>
+            
+            <div class="form-row">
+              <div class="form-group inherited">
+                <label><span>FROM M4</span><br>Scenario</label>
+                <input type="text" readonly disabled>
+              </div>
+
+              <div class="form-group inherited">
+                <label><span>FROM M4</span><br>Rep. Fluid</label>
+                <input type="text" readonly disabled>
+              </div>
+            </div>
+
+            <div class="form-row">
+              <div class="form-group inherited">
+                <label><span>FROM M4</span><br>Phase</label>
+                <input type="text" value="liquid" readonly disabled>
+              </div>
+            </div>
+
+            <button type="button" class="toggle-btn-sub">▶ Release Data (read-only)</button>
+          </div>
+        </div>
+
+        <div class="form-grid-two-col">
+
+          <div class="form-card">
+            <div class="card-header">▶ Consequence Type Selection</div>
+            <div class="card-body">
+              
+              <div class="form-row">
+                <div class="form-group">
+                  <label>Flammable</label>
+                  <select id="flammable_type">
+                    <option value="" selected>—</option>
+                  </select>
+                </div>
+
+                <div class="form-group">
+                  <label>Toxic</label>
+                  <select id="toxic_type">
+                    <option value="" selected>—</option>
+                  </select>
+                </div>
+              </div>
+
+              <div class="form-action-row">
+                <button type="button" class="btn btn-red-outline btn-sm">Suggest</button>
+                <span class="suggest-label">Suggested: Pool Fire (liquid→Pool Fire; gas→Jet Fire; two-phase→Jet Fire). Click Suggest to apply.</span>
+              </div>
+
+              <div class="form-group">
+                <label>Non-Flammable Non-Toxic</label>
+                <select id="nfnt_type">
+                  <option value="" selected>—</option>
+                </select>
+              </div>
+
+            </div>
+          </div>
+
+          <div class="form-card">
+            <div class="card-header">▶ Maximum Consequence Areas <span class="api-ref">(as per Demo rules -> areaAffected)</span></div>
+            <div class="card-body">
+              
+              <span class="sub-label">Consequence from Area Affected.json. Double-click a row to select hole size for damage scenario.</span>
+
+              <div class="form-action-row">
+                <button type="button" class="btn btn-green-outline">Build Consequence Models</button>
+                <button type="button" class="btn btn-red-outline">Clear</button>
+              </div>
+
+              <div class="results-placeholder">
+                No outputs
+              </div>
+
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+</div>

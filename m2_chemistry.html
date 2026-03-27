@@ -1,91 +1,61 @@
-<div class="module-header">
-  <h2 class="module-title">Module 2 — Flammable & Process Chemistry</h2>
-  <span class="module-ref">Ref: API 581 Part 3 (mixture Eq. 3.A.1, representative fluid); PCC-3 §8 Consequence of Failure</span>
+<!DOCTYPE html>
+<html>
+<head>
+    <title>RBI - Module 2</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<div class="header">
+    <h1>Pressure Vessel RBI</h1>
 </div>
 
-<div class="panel">
-  <div class="panel-header">
-    <span class="arrow">▼</span> V-1001
-  </div>
-  
-  <div class="panel-body">
-    <div class="toolbar">
-      <div class="toolbar-left">
-        <span class="tag-label">V-1001</span>
-        <button type="button" class="btn btn-yellow">Refresh</button>
-        <button type="button" class="btn btn-icon">📋</button>
-        <button type="button" class="btn btn-icon">💾</button>
-        <button type="button" class="btn btn-icon">🗑️</button>
-        <div class="toolbar-break"></div>
-        <button type="button" class="btn">Save CSV</button>
-        <button type="button" class="btn">Load</button>
-      </div>
+<div class="navbar">
+    <button onclick="location.href='module1.html'">M1 Asset</button>
+    <button class="active">M2 Chemistry</button>
+    <button onclick="location.href='module3.html'">M3 Damage</button>
+</div>
 
-      <form class="rbi-form" id="module2-form">
-        
-        <div class="form-row">
-          <div class="form-group inherited">
-            <label><span>FROM M1</span><br>Tag</label>
-            <input type="text" value="V-1001" readonly disabled>
-          </div>
+<div class="container">
 
-          <div class="form-group inherited">
-            <label><span>FROM M1</span><br>Equipment Type</label>
-            <input type="text" value="Pressure Vessel" readonly disabled>
-          </div>
+<div class="module-title">Module 2 — Flammable & Process Chemistry</div>
 
-          <div class="form-group inherited">
-            <label><span>FROM M1</span><br>Design Temp (°C)</label>
-            <input type="number" value="343" readonly disabled>
-          </div>
+<div class="card">
 
-          <div class="form-group inherited">
-            <label><span>FROM M1</span><br>Design Pressure (MPa)</label>
-            <input type="number" value="8.27" readonly disabled>
-          </div>
-
-          <div class="form-group inherited">
-            <label><span>FROM M1</span><br>Operating Pressure (MPa)</label>
-            <input type="number" value="7.584" readonly disabled>
-          </div>
-        </div>
-
-        <div class="form-row">
-          <div class="form-group inherited">
-            <label><span>FROM M1</span><br>Operating Temperature (°C)</label>
-            <input type="number" value="111" readonly disabled>
-          </div>
-
-          <div class="form-group">
-            <label>Chemistry Name <span class="api-ref">(API 581)</span> ℹ️</label>
-            <input type="text" placeholder="e.g., Overhead droppings ex V-1001 — API 581" id="chem_name">
-          </div>
-
-          <div class="form-group inherited">
-            <label>Design Temperature (°C) <span class="api-ref">(API 581)</span> ℹ️</label>
-            <input type="number" value="343" readonly disabled>
-          </div>
-        </div>
-
-        <div class="form-row toggle-row">
-          <button type="button" class="toggle-btn">
-            ▶ Flammable chemistry <span class="api-ref">(API 581)</span>
-          </button>
-
-          <button type="button" class="toggle-btn">
-            ▶ Toxic chemistry <span class="sub-text">(as per API 581 toxic (embedded)) (API 581)</span>
-          </button>
-
-          <button type="button" class="toggle-btn">
-            ▶ Acid / corrosive chemistry <span class="sub-text">(as per API 581 acid (embedded)) (API 581)</span>
-          </button>
-
-          <button type="button" class="toggle-btn">
-            ▶ Other chemistry <span class="sub-text">(as per API 581 other (embedded)) (API 581)</span>
-          </button>
-        </div>
-        
-      </form>
+<div class="grid">
+    <div>
+        <label>Tag</label>
+        <input value="V-1001">
     </div>
-  </div>
+
+    <div>
+        <label>Equipment Type</label>
+        <input value="Pressure Vessel">
+    </div>
+
+    <div>
+        <label>Design Temp</label>
+        <input value="343">
+    </div>
+
+    <div>
+        <label>Operating Temp</label>
+        <input value="111">
+    </div>
 </div>
+
+</div>
+
+<div class="grid grid-2">
+
+<div class="option-box">🔥 Flammable Chemistry</div>
+<div class="option-box">☠ Toxic Chemistry</div>
+<div class="option-box">⚗ Acid / Corrosive</div>
+<div class="option-box">➕ Other Chemistry</div>
+
+</div>
+
+</div>
+
+</body>
+</html>

@@ -1,194 +1,120 @@
-/* ==========================================
-   1. GLOBAL & ROOT THEME CONSTANTS
-   ========================================== */
-:root {
-  --bg-canvas: #e0e0e0;
-  --bg-panel: #f4f4f4;
-  --border-color: #bcbcbc;
-  --text-dark: #333333;
-  --accent-orange: #d47519;
-  --accent-yellow: #f2c94c;
-  --green-read-only: #e6f9ec;
-}
-
+/* ===== RESET ===== */
 * {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Segoe UI", Arial, sans-serif;
 }
 
+/* ===== BODY ===== */
 body {
-  background-color: var(--bg-canvas);
-  color: var(--text-dark);
-  font-size: 13px;
+    background: #f5f6f8;
+    color: #333;
 }
 
-/* ==========================================
-   2. MODULE TITLES & HEADER REFERENCES
-   ========================================== */
-.module-header {
-  margin-bottom: 15px;
+/* ===== HEADER ===== */
+.header {
+    background: #ffffff;
+    padding: 10px 20px;
+    border-bottom: 2px solid #e3e3e3;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
 
+.header h1 {
+    font-size: 18px;
+    color: #d35400;
+}
+
+/* ===== NAV TABS ===== */
+.navbar {
+    background: #ffffff;
+    padding: 10px;
+    border-bottom: 1px solid #ddd;
+}
+
+.navbar button {
+    padding: 6px 12px;
+    margin-right: 6px;
+    border: 1px solid #ccc;
+    background: #f9f9f9;
+    cursor: pointer;
+    border-radius: 4px;
+}
+
+.navbar button.active {
+    background: #d35400;
+    color: #fff;
+}
+
+/* ===== CONTAINER ===== */
+.container {
+    padding: 20px;
+}
+
+/* ===== CARD ===== */
+.card {
+    background: #fff;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    margin-bottom: 15px;
+    padding: 15px;
+}
+
+/* ===== TITLE ===== */
 .module-title {
-  color: var(--accent-orange);
-  font-size: 20px;
-  font-weight: bold;
+    font-size: 18px;
+    font-weight: bold;
+    margin-bottom: 10px;
+    color: #444;
 }
 
-.module-ref {
-  font-size: 12px;
-  color: #111;
-  font-weight: bold;
-  display: block;
-  margin-top: 4px;
+/* ===== GRID ===== */
+.grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 10px;
 }
 
-/* ==========================================
-   3. PANELS & CONTAINERS
-   ========================================== */
-.panel {
-  background: var(--bg-panel);
-  border: 1px solid var(--border-color);
-  border-radius: 6px;
-  margin-bottom: 20px;
+.grid-2 {
+    grid-template-columns: repeat(2, 1fr);
 }
 
-.panel-header {
-  background: #fdf6e7;
-  border-bottom: 1px solid var(--border-color);
-  padding: 10px 15px;
-  font-weight: bold;
-  color: var(--accent-orange);
-  cursor: pointer;
+/* ===== FORM ===== */
+label {
+    font-size: 12px;
+    font-weight: bold;
 }
 
-.panel-body {
-  padding: 15px;
+input, select {
+    width: 100%;
+    padding: 6px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
 }
 
-/* Vertical Toolbar Split Container */
-.form-container {
-  display: flex;
-  gap: 15px;
-}
-
-.toolbar-vertical {
-  width: 140px;
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
-  background: #dfdfdf;
-  padding: 10px;
-  border: 1px solid var(--border-color);
-  border-radius: 6px;
-  align-self: flex-start;
-}
-
-.form-workspace {
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-  gap: 15px;
-}
-
-/* ==========================================
-   4. BUTTONS & INPUT FIELDS
-   ========================================== */
+/* ===== BUTTON ===== */
 .btn {
-  padding: 6px 12px;
-  border: 1px solid var(--border-color);
-  border-radius: 4px;
-  background: #ffffff;
-  cursor: pointer;
-  font-size: 12px;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  transition: background 0.2s;
+    padding: 6px 10px;
+    border: none;
+    background: #d35400;
+    color: white;
+    border-radius: 4px;
+    cursor: pointer;
 }
 
-.btn:hover { background: #e6e6e6; }
-.btn-yellow { background: var(--accent-yellow); border-color: #cca425; }
-.btn-orange { background: var(--accent-orange); color: white; border: none; }
-.btn-icon { padding: 5px; min-width: 32px; }
-
-.toolbar-actions {
-  display: flex;
-  gap: 4px;
-  flex-wrap: wrap;
+/* ===== BOX OPTIONS ===== */
+.option-box {
+    border: 1px solid #ddd;
+    padding: 12px;
+    border-radius: 6px;
+    cursor: pointer;
+    background: #fafafa;
+    transition: 0.2s;
 }
 
-/* Form Grid Matrix */
-.form-grid-three-col {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 15px;
-}
-
-.form-grid-two-col {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 15px;
-}
-
-.form-row {
-  display: flex;
-  gap: 15px;
-  flex-wrap: wrap;
-}
-
-.form-group {
-  display: flex;
-  flex-direction: column;
-  flex: 1;
-  min-width: 180px;
-}
-
-.form-group label {
-  font-size: 11px;
-  font-weight: bold;
-  margin-bottom: 5px;
-}
-
-.form-group label span {
-  font-weight: normal;
-  color: #666;
-}
-
-.form-group input, .form-group select {
-  padding: 8px;
-  border: 1px solid var(--border-color);
-  border-radius: 4px;
-  background: #fff;
-  font-size: 12px;
-}
-
-.form-group.inherited input {
-  background-color: var(--green-read-only);
-}
-
-.toggle-btn {
-  width: 100%;
-  text-align: left;
-  background: #fff;
-  border: 1px solid var(--border-color);
-  border-radius: 6px;
-  padding: 15px;
-  cursor: pointer;
-  color: var(--accent-orange);
-  font-weight: bold;
-}
-
-.toggle-btn .sub-text {
-  color: #666;
-  font-weight: normal;
-  font-size: 11px;
-}
-
-.scrolling-vertical {
-  max-height: 400px;
-  overflow-y: auto;
-  padding-right: 5px;
+.option-box:hover {
+    background: #ffe9dc;
+    border-color: #d35400;
 }

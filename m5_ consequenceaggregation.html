@@ -1,120 +1,448 @@
-<div class="module-header">
-  <h2 class="module-title">Module 5 — Consequence Aggregation</h2>
-  <span class="module-ref">Ref: PCC-3 §8 Determining Consequence of Failure; API 581 Part 3 Level 1 COF, consequence areas</span>
-</div>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pressure Vessel RBI - Module 5</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
 
-<div class="panel">
-  
-  <div class="panel-body">
+        body {
+            background-color: #e6e6e6;
+            color: #333;
+            font-size: 11px;
+        }
 
-    <div class="form-container">
+        /* Top Orange Banner */
+        .top-banner {
+            background-color: #c45a11;
+            color: white;
+            padding: 6px 15px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
 
-      <div class="toolbar-vertical">
-        <span class="tag-label">V-1001</span>
-        <div class="toolbar-actions">
-          <button type="button" class="btn btn-yellow">Refresh</button>
-          <button type="button" class="btn btn-icon">📋</button>
-          <button type="button" class="btn btn-icon">💾</button>
-          <button type="button" class="btn btn-icon">🗑️</button>
+        .top-banner h1 {
+            font-size: 15px;
+            font-weight: bold;
+        }
+
+        .profile-section {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-size: 10px;
+        }
+
+        /* Navigation Tabs */
+        .nav-tabs {
+            background-color: #d9d9d9;
+            padding: 4px 10px;
+            display: flex;
+            gap: 4px;
+            border-bottom: 1px solid #b3b3b3;
+            overflow-x: auto;
+        }
+
+        .tab {
+            background-color: #fff;
+            border: 1px solid #ccc;
+            border-radius: 12px;
+            padding: 3px 10px;
+            font-size: 10px;
+            display: flex;
+            align-items: center;
+            gap: 4px;
+            cursor: pointer;
+            white-space: nowrap;
+        }
+
+        .tab.active {
+            background-color: #ffebcc;
+            border-color: #fca311;
+        }
+
+        .status-dot {
+            height: 7px;
+            width: 7px;
+            border-radius: 50%;
+            display: inline-block;
+        }
+
+        .dot-green { background-color: #28a745; }
+        .dot-gray { background-color: #a0a0a0; }
+
+        /* Main Container */
+        .container {
+            padding: 12px;
+        }
+
+        .module-header {
+            color: #b04a00;
+            font-size: 13px;
+            font-weight: bold;
+            margin-bottom: 4px;
+        }
+
+        .reference-text {
+            font-size: 10px;
+            color: #555;
+            margin-bottom: 12px;
+            font-weight: bold;
+        }
+
+        /* Yellow Collapsible Section */
+        .accordion-item {
+            border: 1px solid #ccc;
+            background-color: #fff;
+            margin-bottom: 15px;
+            border-radius: 4px;
+        }
+
+        .accordion-header {
+            background-color: #f7ca18;
+            padding: 5px 10px;
+            font-weight: bold;
+            font-size: 11px;
+            color: #333;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .accordion-content {
+            padding: 10px;
+            display: flex;
+            gap: 15px;
+        }
+
+        /* Left Toolbar Sidebar */
+        .sidebar-tools {
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+            width: 140px;
+            min-width: 140px;
+        }
+
+        .tag-row {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            font-weight: bold;
+            color: #b04a00;
+            font-size: 11px;
+            margin-bottom: 5px;
+        }
+
+        .btn-row {
+            display: flex;
+            gap: 4px;
+        }
+
+        button, .btn {
+            background-color: #fff;
+            border: 1px solid #aaa;
+            padding: 3px 6px;
+            font-size: 10px;
+            cursor: pointer;
+            border-radius: 3px;
+        }
+
+        button:hover {
+            background-color: #f0f0f0;
+        }
+
+        /* Main Workspace Area */
+        .form-area {
+            flex-grow: 1;
+        }
+
+        /* Inherited Banner from M4 */
+        .inherited-banner {
+            border: 1px solid #a3cfb6;
+            border-radius: 4px;
+            padding: 10px;
+            margin-bottom: 15px;
+            background-color: #fff;
+        }
+
+        .inherited-title {
+            color: #28a745;
+            font-weight: bold;
+            font-size: 11px;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            margin-bottom: 5px;
+        }
+
+        .banner-subtext {
+            font-size: 10px;
+            font-weight: bold;
+            color: #333;
+            margin-bottom: 10px;
+        }
+
+        .inherited-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+            margin-bottom: 10px;
+        }
+
+        /* Card Sections Split */
+        .card-grid {
+            display: grid;
+            grid-template-columns: 4.5fr 3.5fr;
+            gap: 12px;
+        }
+
+        .card {
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            background-color: #e9ecef;
+            padding: 12px;
+            height: fit-content;
+        }
+
+        .card-header {
+            color: #d06519;
+            font-weight: bold;
+            font-size: 11px;
+            margin-bottom: 10px;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            margin-bottom: 10px;
+        }
+
+        .form-group label {
+            font-size: 10px;
+            font-weight: bold;
+            margin-bottom: 3px;
+            color: #333;
+        }
+
+        .lbl-source {
+            color: #28a745 !important;
+            font-size: 9px !important;
+            margin-bottom: 1px !important;
+        }
+
+        input, select {
+            padding: 5px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            background-color: #fcfcfc;
+            font-size: 11px;
+            width: 100%;
+        }
+
+        input.readonly-green {
+            background-color: #e6f9ec;
+            border: 1px solid #a3cfb6;
+        }
+
+        .small-hint {
+            font-size: 10px;
+            font-weight: bold;
+            color: #333;
+            margin-bottom: 10px;
+            line-height: 1.3;
+        }
+
+        .suggest-btn {
+            background-color: #fff;
+            border: 1px solid #fca311;
+            padding: 2px 6px;
+            font-size: 10px;
+            cursor: pointer;
+            border-radius: 3px;
+            color: #b04a00;
+        }
+
+        /* Right Panel Tools */
+        .action-btns {
+            display: flex;
+            gap: 5px;
+            margin-bottom: 10px;
+        }
+
+        .green-action-btn {
+            background-color: #e6f9ec;
+            color: #28a745;
+            border: 1px solid #a3cfb6;
+            padding: 4px 8px;
+            font-size: 10px;
+            border-radius: 3px;
+            cursor: pointer;
+        }
+
+        .red-action-btn {
+            background-color: #fff;
+            color: #dc3545;
+            border: 1px solid #f5c2c7;
+            padding: 4px 8px;
+            font-size: 10px;
+            border-radius: 3px;
+            cursor: pointer;
+        }
+
+        @media (max-width: 1200px) {
+            .card-grid { grid-template-columns: 1fr; }
+        }
+
+        @media (max-width: 768px) {
+            .accordion-content { flex-direction: column; }
+            .inherited-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+
+    <header class="top-banner">
+        <h1>Pressure vessel RBI <span style="background-color: #3f88c5; padding: 2px 6px; font-size: 10px; border-radius: 3px;">File ▼</span></h1>
+        <div class="profile-section">
+            <div>OpenStandard_RBI <br> <span style="font-size: 9px;">27 Mar 2026 10:13</span></div>
+            <div style="font-size: 16px;">🌤️</div>
         </div>
-        <div class="toolbar-actions">
-          <button type="button" class="btn">Save CSV</button>
-          <button type="button" class="btn">Load</button>
-        </div>
-      </div>
+    </header>
 
-      <div class="form-workspace">
+    <nav class="nav-tabs">
+        <div class="tab"><span class="status-dot dot-green"></span>M1 Asset</div>
+        <div class="tab"><span class="status-dot dot-green"></span>M2 Chemistry</div>
+        <div class="tab"><span class="status-dot dot-green"></span>M3 Damage</div>
+        <div class="tab"><span class="status-dot dot-green"></span>M4 Release</div>
+        <div class="tab active"><span class="status-dot dot-green"></span>M5 Consequence</div>
+        <div class="tab"><span class="status-dot dot-green"></span>M6 Risk consequences</div>
+        <div class="tab"><span class="status-dot dot-green"></span>M7 Planning</div>
+        <div class="tab"><span class="status-dot dot-green"></span>M8 History</div>
+        <div class="tab"><span class="status-dot dot-green"></span>M9 Report</div>
+        <div class="tab"><span class="status-dot dot-gray"></span>M10 Inspection test plan</div>
+    </nav>
 
-        <div class="form-card inherited-card">
-          <div class="card-header">
-            📥 Inherited from M4 — Release
-          </div>
-          <div class="card-body">
-            <span class="sub-label">Consequence from Area Affected.json. Double-click a row in Maximum Consequence Areas below to select hole size for damage scenario.</span>
-            
-            <div class="form-row">
-              <div class="form-group inherited">
-                <label><span>FROM M4</span><br>Scenario</label>
-                <input type="text" readonly disabled>
-              </div>
+    <div class="container">
+        <h2 class="module-header">Module 5 — Consequence Aggregation</h2>
+        <p class="reference-text">Ref: PCC-3 §8 Determining Consequence of Failure; API 581 Part 3 Level 1 COF, consequence areas</p>
 
-              <div class="form-group inherited">
-                <label><span>FROM M4</span><br>Rep. Fluid</label>
-                <input type="text" readonly disabled>
-              </div>
+        <div class="accordion-item">
+            <div class="accordion-header">
+                ▶ V-1001
             </div>
+            <div class="accordion-content">
 
-            <div class="form-row">
-              <div class="form-group inherited">
-                <label><span>FROM M4</span><br>Phase</label>
-                <input type="text" value="liquid" readonly disabled>
-              </div>
-            </div>
-
-            <button type="button" class="toggle-btn-sub">▶ Release Data (read-only)</button>
-          </div>
-        </div>
-
-        <div class="form-grid-two-col">
-
-          <div class="form-card">
-            <div class="card-header">▶ Consequence Type Selection</div>
-            <div class="card-body">
-              
-              <div class="form-row">
-                <div class="form-group">
-                  <label>Flammable</label>
-                  <select id="flammable_type">
-                    <option value="" selected>—</option>
-                  </select>
+                <div class="sidebar-tools">
+                    <div class="tag-row">
+                        <span>V-1001</span>
+                        <button style="padding: 2px 5px;">Refresh</button>
+                    </div>
+                    <div class="btn-row">
+                        <button>📋</button>
+                        <button>💾</button>
+                        <button>🗑️</button>
+                    </div>
+                    <div class="btn-row">
+                        <button>Save CSV</button>
+                        <button>Load</button>
+                    </div>
                 </div>
 
-                <div class="form-group">
-                  <label>Toxic</label>
-                  <select id="toxic_type">
-                    <option value="" selected>—</option>
-                  </select>
+                <div class="form-area">
+
+                    <div class="inherited-banner">
+                        <div class="inherited-title">📥 Inherited from M4 — Release</div>
+                        <div class="banner-subtext">Consequence from Area Affected.json. Double-click a row in Maximum Consequence Areas below to select hole size for damage scenario.</div>
+
+                        <div class="inherited-grid">
+                            <div class="form-group">
+                                <label class="lbl-source">FROM M4</label>
+                                <label>Scenario</label>
+                                <input type="text" class="readonly-green" readonly>
+                            </div>
+                            <div class="form-group">
+                                <label class="lbl-source">FROM M4</label>
+                                <label>Rep. Fluid</label>
+                                <input type="text" class="readonly-green" readonly>
+                            </div>
+                        </div>
+
+                        <div style="width: calc(50% - 7.5px);">
+                            <div class="form-group">
+                                <label class="lbl-source">FROM M4</label>
+                                <label>Phase</label>
+                                <input type="text" value="liquid" class="readonly-green" readonly>
+                            </div>
+                        </div>
+
+                        <span style="font-size: 10px; color: #555;">▶ Release Data (read-only)</span>
+                    </div>
+
+                    <div class="card-grid">
+
+                        <div class="card">
+                            <div class="card-header">▶ Consequence Type Selection</div>
+
+                            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px;">
+                                <div class="form-group">
+                                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 3px;">
+                                        <label>Flammable</label>
+                                        <button class="suggest-btn">Suggest</button>
+                                    </div>
+                                    <select>
+                                        <option>--</option>
+                                    </select>
+                                </div>
+
+                                <div class="form-group">
+                                    <label>Toxic</label>
+                                    <select style="margin-top: 2px;">
+                                        <option>--</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="small-hint">
+                                Suggested: Pool Fire (Liquid — Pool Fire; Gas — Jet Fire; two-phase — Jet Fire). Click Suggest to apply.
+                            </div>
+
+                            <div style="width: calc(50% - 7.5px);">
+                                <div class="form-group">
+                                    <label>Non-Flammable Non-Toxic</label>
+                                    <select>
+                                        <option>--</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="card">
+                            <div class="card-header">▶ Maximum Consequence Areas <span style="font-weight: normal; font-size: 9px; color: #555;">(as per Demo rules -> areaAffected)</span></div>
+
+                            <div class="small-hint">Consequence from Area Affected.json. Double-click a row to select hole size for damage scenario.</div>
+
+                            <div class="action-btns">
+                                <button class="green-action-btn">Build Consequence Models</button>
+                                <button class="red-action-btn">Clear</button>
+                            </div>
+
+                            <div style="font-size: 11px; font-weight: bold; margin-top: 5px;">No outputs</div>
+                        </div>
+
+                    </div>
+
                 </div>
-              </div>
-
-              <div class="form-action-row">
-                <button type="button" class="btn btn-red-outline btn-sm">Suggest</button>
-                <span class="suggest-label">Suggested: Pool Fire (liquid→Pool Fire; gas→Jet Fire; two-phase→Jet Fire). Click Suggest to apply.</span>
-              </div>
-
-              <div class="form-group">
-                <label>Non-Flammable Non-Toxic</label>
-                <select id="nfnt_type">
-                  <option value="" selected>—</option>
-                </select>
-              </div>
-
             </div>
-          </div>
-
-          <div class="form-card">
-            <div class="card-header">▶ Maximum Consequence Areas <span class="api-ref">(as per Demo rules -> areaAffected)</span></div>
-            <div class="card-body">
-              
-              <span class="sub-label">Consequence from Area Affected.json. Double-click a row to select hole size for damage scenario.</span>
-
-              <div class="form-action-row">
-                <button type="button" class="btn btn-green-outline">Build Consequence Models</button>
-                <button type="button" class="btn btn-red-outline">Clear</button>
-              </div>
-
-              <div class="results-placeholder">
-                No outputs
-              </div>
-
-            </div>
-          </div>
-
         </div>
-
-      </div>
-
     </div>
 
-  </div>
-</div>
+</body>
+</html>

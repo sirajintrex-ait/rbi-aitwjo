@@ -1,270 +1,95 @@
-<div class="module-header">
-  <h2 class="module-title">Module 7 — Planning</h2>
-  <span class="module-ref">Ref: PCC-3 §10 Risk Management With Inspection Activities; API 580 inspection plan, inspection interval</span>
-</div>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pressure Vessel RBI - Module 7 Planning</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
 
-<div class="panel">
-  <div class="panel-body">
+        body {
+            background-color: #e6e6e6;
+            color: #333;
+            font-size: 11px;
+        }
 
-    <div class="form-container">
+        /* Top Orange Banner */
+        .top-banner {
+            background-color: #c45a11;
+            color: white;
+            padding: 6px 15px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
 
-      <div class="toolbar-vertical">
-        <span class="tag-label">V-1001</span>
-        <div class="toolbar-actions">
-          <button type="button" class="btn btn-yellow">Refresh</button>
-          <button type="button" class="btn btn-icon">📋</button>
-          <button type="button" class="btn btn-icon">💾</button>
-          <button type="button" class="btn btn-icon">🗑️</button>
-        </div>
-        <div class="toolbar-actions">
-          <button type="button" class="btn">Save CSV</button>
-          <button type="button" class="btn">Load</button>
-        </div>
-      </div>
+        .top-banner h1 {
+            font-size: 15px;
+            font-weight: bold;
+        }
 
-      <div class="form-workspace">
+        .profile-section {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-size: 10px;
+        }
 
-        <div class="form-grid-three-col">
+        /* Navigation Tabs */
+        .nav-tabs {
+            background-color: #d9d9d9;
+            padding: 4px 10px;
+            display: flex;
+            gap: 4px;
+            border-bottom: 1px solid #b3b3b3;
+            overflow-x: auto;
+        }
 
-          <div class="form-card inherited-card">
-            <div class="card-header">📋 Basic Info</div>
-            <div class="card-body">
-              <div class="form-group inherited">
-                <label>Equipment Tag</label>
-                <input type="text" value="V-1001" readonly disabled>
-              </div>
-              <div class="form-group inherited">
-                <label>Vessel Name</label>
-                <input type="text" value="Overhead Accumulator" readonly disabled>
-              </div>
-              <div class="form-group inherited">
-                <label>Description</label>
-                <input type="text" value="Overhead accumulator downstream of air cooler" readonly disabled>
-              </div>
-              <div class="form-group inherited">
-                <label>Equipment Type</label>
-                <input type="text" value="Pressure Vessel" readonly disabled>
-              </div>
-            </div>
-          </div>
+        .tab {
+            background-color: #fff;
+            border: 1px solid #ccc;
+            border-radius: 12px;
+            padding: 3px 10px;
+            font-size: 10px;
+            display: flex;
+            align-items: center;
+            gap: 4px;
+            cursor: pointer;
+            white-space: nowrap;
+        }
 
-          <div class="form-card inherited-card">
-            <div class="card-header">📐 Design Conditions</div>
-            <div class="card-body">
-              <div class="form-group inherited">
-                <label>Design Temperature (°C)</label>
-                <input type="number" value="343" readonly disabled>
-              </div>
-              <div class="form-group inherited">
-                <label>Design Pressure (MPa)</label>
-                <input type="number" value="8.27" readonly disabled>
-              </div>
-              <div class="form-group inherited">
-                <label>Nominal Thickness (mm)</label>
-                <input type="number" value="41.3" readonly disabled>
-              </div>
-              <div class="form-group inherited">
-                <label>Corrosion Allowance (mm)</label>
-                <input type="number" value="1.6" readonly disabled>
-              </div>
-            </div>
-          </div>
+        .tab.active {
+            background-color: #ffebcc;
+            border-color: #fca311;
+        }
 
-          <div class="form-card">
-            <div class="card-header">⏳ Inspection Frequency <span class="api-ref">(as per Demo rules -> planning) (PCC-3 §10, API 580 inspection plan)</span></div>
-            <div class="card-body">
-              <span class="sub-label">From risk score (M6) and planning.json</span>
-              <div class="form-group">
-                <label>Risk Score</label>
-                <input type="text" value="—" readonly disabled>
-              </div>
-              <div class="form-group">
-                <label>Recommended Interval</label>
-                <input type="text" value="—" readonly disabled>
-              </div>
-              <span class="sub-label">Complete M6 Risk to get a risk score (CoF + PoF).</span>
-            </div>
-          </div>
+        .status-dot {
+            height: 7px;
+            width: 7px;
+            border-radius: 50%;
+            display: inline-block;
+        }
 
-        </div>
+        .dot-green { background-color: #28a745; }
+        .dot-gray { background-color: #a0a0a0; }
 
-        <div class="form-grid-two-col">
+        /* Main Container */
+        .container {
+            padding: 12px;
+        }
 
-          <div class="form-card">
-            <div class="card-header">📋 Inspection plan</div>
-            <div class="card-body scrolling-horizontal">
-              <table class="matrix-table compact-table">
-                <thead>
-                  <tr>
-                    <th></th>
-                    <th>1</th>
-                    <th>2</th>
-                    <th>3</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr>
-                    <td>Actions</td>
-                    <td><button type="button" class="btn btn-icon btn-sm">💾</button> <button type="button" class="btn btn-icon btn-sm">🗑️</button></td>
-                    <td><button type="button" class="btn btn-icon btn-sm">💾</button> <button type="button" class="btn btn-icon btn-sm">🗑️</button></td>
-                    <td><button type="button" class="btn btn-icon btn-sm">💾</button> <button type="button" class="btn btn-icon btn-sm">🗑️</button></td>
-                  </tr>
-                  <tr>
-                    <td>ID</td>
-                    <td>1</td>
-                    <td>2</td>
-                    <td>3</td>
-                  </tr>
-                  <tr>
-                    <td>Source</td>
-                    <td>Min wall</td>
-                    <td>Cracking</td>
-                    <td>Other</td>
-                  </tr>
-                  <tr>
-                    <td>Calculation title</td>
-                    <td>—</td>
-                    <td>—</td>
-                    <td>—</td>
-                  </tr>
-                  <tr>
-                    <td>Component type</td>
-                    <td>Shell (UG-27(c)) — factor 0.6</td>
-                    <td>Shell (UG-27(c)) — factor 0.6</td>
-                    <td>Shell (UG-27(c)) — factor 0.6</td>
-                  </tr>
-                  <tr>
-                    <td>Damage Mechanism</td>
-                    <td>Thinning</td>
-                    <td>—</td>
-                    <td>—</td>
-                  </tr>
-                  <tr>
-                    <td>Mode</td>
-                    <td>—</td>
-                    <td>—</td>
-                    <td>—</td>
-                  </tr>
-                  <tr>
-                    <td>PoF</td>
-                    <td>—</td>
-                    <td>—</td>
-                    <td>—</td>
-                  </tr>
-                  <tr>
-                    <td>Material</td>
-                    <td>—</td>
-                    <td>—</td>
-                    <td>—</td>
-                  </tr>
-                  <tr>
-                    <td>freq in yrs</td>
-                    <td><input type="text" class="input-sm"></td>
-                    <td><input type="text" class="input-sm"></td>
-                    <td><input type="text" class="input-sm"></td>
-                  </tr>
-                  <tr>
-                    <td>comment</td>
-                    <td><input type="text" class="input-sm"></td>
-                    <td><input type="text" class="input-sm"></td>
-                    <td><input type="text" class="input-sm"></td>
-                  </tr>
-                  <tr>
-                    <td>Type</td>
-                    <td><select><option value="Internal">Internal</option><option value="External">External</option></select></td>
-                    <td><select><option value="Internal">Internal</option><option value="External">External</option></select></td>
-                    <td><select><option value="Internal">Internal</option><option value="External">External</option></select></td>
-                  </tr>
-                  <tr>
-                    <td>Inspection</td>
-                    <td><select><option value="UT-UTA">UT-UTA — A-Scan</option></select></td>
-                    <td><select><option value="PT-DPT">PT-DPT — Dye Penetrant Testing</option></select></td>
-                    <td><select><option value="OT-BNT">OT-BNT — Bench Test</option></select></td>
-                  </tr>
-                </tbody>
-              </table>
-            </div>
-          </div>
+        .module-header {
+            color: #b04a00;
+            font-size: 13px;
+            font-weight: bold;
+            margin-bottom: 4px;
+        }
 
-          <div class="form-card">
-            <div class="card-header">🔍 Inspection Methods <span class="api-ref">(as per Demo rules -> inspectionMethod) (as per inspection_method.json)</span></div>
-            <div class="card-body">
-              <span class="sub-label">Load inspection_method.json via References. Click a row to view full details.</span>
-              
-              <div class="form-row-compact">
-                <input type="text" placeholder="Search code, description, group..." class="search-input">
-                <button type="button" class="btn btn-sm">15 methods</button>
-                <button type="button" class="btn btn-sm">0 selected for use</button>
-              </div>
-
-              <div class="scrolling-vertical-table">
-                <table class="reference-table">
-                  <thead>
-                    <tr>
-                      <th>✓</th>
-                      <th>Code</th>
-                      <th>Description</th>
-                      <th>Group</th>
-                      <th>Strategy</th>
-                      <th>Material types</th>
-                      <th>Anomalies</th>
-                      <th>Equipment types</th>
-                      <th>Surface prep</th>
-                      <th>PoD</th>
-                      <th>Remarks</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <tr>
-                      <td><input type="checkbox"></td>
-                      <td>AT-AET</td>
-                      <td>Acoustic Emission</td>
-                      <td>AT Acoustic emission testing</td>
-                      <td>N-INT</td>
-                      <td>All</td>
-                      <td>CK; TG; OTH</td>
-                      <td>STK; PVS</td>
-                      <td>None</td>
-                      <td>—</td>
-                      <td>Storage Tank inspection</td>
-                    </tr>
-                    <tr>
-                      <td><input type="checkbox"></td>
-                      <td>CT-CHT</td>
-                      <td>Holiday Test</td>
-                      <td>CT Coating Integrity Testing</td>
-                      <td>N-INT</td>
-                      <td>All</td>
-                      <td>CA</td>
-                      <td>PPL; PVS; PPG</td>
-                      <td>STD</td>
-                      <td>—</td>
-                      <td>Used in pipeline...</td>
-                    </tr>
-                    <tr>
-                      <td><input type="checkbox"></td>
-                      <td>CT-CIPS</td>
-                      <td>Close Interval Potential Survey</td>
-                      <td>CT Coating Integrity Testing</td>
-                      <td>N-INT</td>
-                      <td>F</td>
-                      <td>CA</td>
-                      <td>PPL</td>
-                      <td>None</td>
-                      <td>—</td>
-                      <td>Pipeline externa...</td>
-                    </tr>
-                  </tbody>
-                </table>
-              </div>
-            </div>
-          </div>
-
-        </div>
-
-      </div>
-
-    </div>
-
-  </div>
-</div>
+        .reference-text {
+            font-size: 10px;
+            color:

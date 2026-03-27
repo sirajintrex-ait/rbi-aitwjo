@@ -14,8 +14,11 @@
     }
 
     body {
-      background-color: #e0e0e0; /* Matches the gray background */
+      background-color: #e0e0e0;
       padding-top: 10px;
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
     }
 
     /* 1. Brand Top Bar */
@@ -33,7 +36,7 @@
     }
 
     .brand-title {
-      color: #d47519; /* Original orange color */
+      color: #d47519;
       font-size: 24px;
       font-weight: bold;
     }
@@ -79,16 +82,15 @@
       background-color: #e0e0e0;
       padding: 0 15px;
       gap: 4px;
-      border-bottom: 2px solid #d47519; /* Orange bottom dividing line */
+      border-bottom: 2px solid #d47519;
     }
 
-    /* Standard Tab styling as Anchor tags */
     .tab {
       display: flex;
       align-items: center;
       gap: 6px;
       padding: 8px 14px;
-      background: #cccccc; /* Unselected Tab Gray */
+      background: #cccccc;
       border: 1px solid #bcbcbc;
       border-bottom: none;
       border-top-left-radius: 6px;
@@ -97,24 +99,22 @@
       color: #333;
       cursor: pointer;
       white-space: nowrap;
-      text-decoration: none; /* Strip standard hyperlink styling */
+      text-decoration: none;
     }
 
     .tab:hover {
       background: #dcdcdc;
     }
 
-    /* Active Tab Specific Overrides */
     .tab.active {
-      background: #fdf6e7; /* Active Cream/Yellow Hue */
+      background: #fdf6e7;
       color: #d47519;
       font-weight: bold;
-      border-bottom: 1px solid #fdf6e7; /* Blends with container background */
-      margin-bottom: -1px; /* Overlaps standard orange border line */
+      border-bottom: 1px solid #fdf6e7;
+      margin-bottom: -1px;
       z-index: 2;
     }
 
-    /* Status Dots */
     .dot {
       width: 8px;
       height: 8px;
@@ -137,6 +137,13 @@
       gap: 5px;
       border-bottom: 1px solid #bcbcbc;
     }
+
+    /* 4. Dashboard Viewport Container (Loaded internally) */
+    .workspace-viewport {
+      flex: 1;
+      border: none;
+      background: #fff;
+    }
   </style>
 </head>
 <body>
@@ -156,44 +163,44 @@
     </div>
   </div>
 
-  <div class="nav-tabs">
-    <a href="M1%20Asset.html" class="tab">
+  <div class="nav-tabs" id="nav-tabs">
+    <a href="m1_asset.html" class="tab active">
       <span class="dot dot-green"></span> M1 Asset
     </a>
     
-    <a href="M2_Chemistry.html" class="tab">
+    <a href="m2_chemistry.html" class="tab">
       <span class="dot dot-green"></span> M2 Chemistry
     </a>
     
-    <a href="M3_damage.html" class="tab">
+    <a href="m3_damage.html" class="tab">
       <span class="dot dot-green"></span> M3 Damage
     </a>
     
-    <a href="M4_release.html" class="tab">
+    <a href="m4_release.html" class="tab">
       <span class="dot dot-green"></span> M4 Release
     </a>
     
-    <a href="M5_Consequence%20Aggregation.html" class="tab">
+    <a href="m5_consequenceaggregation.html" class="tab">
       <span class="dot dot-green"></span> M5 Consequence
     </a>
     
-    <a href="M6_Risk%20Consequences%20Scoring%20&%20Position.html" class="tab">
+    <a href="m6_riskconsequencesscoringPosi.html" class="tab">
       <span class="dot dot-green"></span> M6 Risk consequences
     </a>
     
-    <a href="M7_Planning.html" class="tab">
+    <a href="m7_planning.html" class="tab">
       <span class="dot dot-green"></span> M7 Planning
     </a>
     
-    <a href="M8_History.html" class="tab">
+    <a href="m8_history.html" class="tab">
       <span class="dot dot-green"></span> M8 History
     </a>
     
-    <a href="M9_Report.html" class="tab">
+    <a href="m9_report.html" class="tab">
       <span class="dot dot-green"></span> M9 Report
     </a>
     
-    <a href="M10_Inspection%20Test%20Plan.html" class="tab">
+    <a href="m10_inspectiontestplan.html" class="tab">
       <span class="dot dot-gray"></span> M10 Inspection test plan
     </a>
   </div>
@@ -202,5 +209,8 @@
     📚 LIBRARIES ▶
   </div>
 
+  <iframe id="viewport" class="workspace-viewport" src="m1_asset.html"></iframe>
+
+  <script src="index.js"></script>
 </body>
 </html>

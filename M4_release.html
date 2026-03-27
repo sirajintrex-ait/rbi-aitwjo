@@ -1,0 +1,151 @@
+<div class="module-header">
+  <h2 class="module-title">Module 4 — Release Rate Estimation</h2>
+  <span class="module-ref">Ref: PCC-3 §8 Determining Consequence of Failure (release); API 581 release rate, standard hole sizes (6.25, 25, 100, 150 mm), Inst/Cont</span>
+</div>
+
+<div class="panel">
+  
+  <div class="panel-body">
+
+    <div class="form-container">
+
+      <div class="toolbar-vertical">
+        <span class="tag-label">V-1001</span>
+        <div class="toolbar-actions">
+          <button type="button" class="btn btn-yellow">Refresh</button>
+          <button type="button" class="btn btn-icon">📋</button>
+          <button type="button" class="btn btn-icon">💾</button>
+          <button type="button" class="btn btn-icon">🗑️</button>
+        </div>
+        <div class="toolbar-actions">
+          <button type="button" class="btn">Save CSV</button>
+          <button type="button" class="btn">Load</button>
+        </div>
+      </div>
+
+      <div class="form-workspace">
+
+        <div class="form-card inherited-card">
+          <div class="card-header">
+            📥 Inherited from M2 — Chemistry
+          </div>
+          <div class="card-body form-row">
+            <div class="form-group inherited">
+              <label><span>FROM M2</span><br>Chemistry Name</label>
+              <input type="text" readonly disabled>
+            </div>
+            <div class="form-group inherited">
+              <label><span>FROM M2</span><br>Suggested Rep. Fluid</label>
+              <input type="text" readonly disabled>
+            </div>
+          </div>
+        </div>
+
+        <div class="form-grid-three-col">
+
+          <div class="form-card">
+            <div class="card-header">▶ Representative Fluid</div>
+            <div class="card-body">
+              <div class="form-group">
+                <label>Selected Fluid</label>
+                <div class="input-inline-btn">
+                  <select id="selected_fluid">
+                    <option value="" selected>— select —</option>
+                  </select>
+                  <button type="button" class="btn btn-sm">— MW</button>
+                  <button type="button" class="btn btn-sm">— NBP</button>
+                  <button type="button" class="btn btn-sm">— ρ</button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="form-card">
+            <div class="card-header">▶ Release Inputs</div>
+            <div class="card-body">
+              
+              <div class="form-group">
+                <label>Scenario Name <span class="api-ref">(PCC-3 §8, API 581)</span></label>
+                <input type="text" placeholder="e.g., Full bore rupture — PCC-3 §8, API 581">
+              </div>
+
+              <div class="form-row-compact">
+                <div class="form-group">
+                  <label>Phase at Release</label>
+                  <select id="phase_release">
+                    <option value="Liquid" selected>Liquid</option>
+                    <option value="Gas">Gas</option>
+                    <option value="Two-phase">Two-phase</option>
+                  </select>
+                </div>
+
+                <div class="form-group inherited">
+                  <label>Equation</label>
+                  <input type="text" value="Liquid orifice (Cd·A·√(2ρΔP))" readonly disabled>
+                  <span class="sub-label">API 581 / PCC-3 §8 — orifice flow</span>
+                </div>
+              </div>
+
+              <div class="form-row-compact">
+                <div class="form-group">
+                  <label>Storage / Operating Pressure (MPa)</label>
+                  <select id="operating_pressure">
+                    <option value="7.584">Operating Pressure (7.584 MPa)</option>
+                  </select>
+                  <span class="sub-label">API 581 typically uses operating pressure for release scenarios; the choice is yours.</span>
+                </div>
+
+                <div class="form-group">
+                  <label>Back Pressure (MPa)</label>
+                  <input type="number" value="0.101325" step="any">
+                </div>
+              </div>
+
+              <div class="form-row-compact">
+                <div class="form-group">
+                  <label>Storage / Operating Temp (°C)</label>
+                  <select id="operating_temp">
+                    <option value="111.00">Operating Temperature (111.00 °C)</option>
+                  </select>
+                </div>
+
+                <div class="form-group">
+                  <label>Discharge Coefficient Cd</label>
+                  <input type="number" value="0.61" step="any">
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label>Total Volume of Vessel (L) <span class="api-ref">(API 581, PCC-3 §8)</span></label>
+                <input type="text" placeholder="e.g., 1490 — full contents, time-to-empty">
+                <span class="sub-label">Used for full contents mass and time-to-empty (API 581, PCC-3 §8).</span>
+              </div>
+
+            </div>
+          </div>
+
+          <div class="form-card">
+            <div class="card-header">▶ Results — 4 Hole Sizes</div>
+            <div class="card-body">
+              
+              <div class="form-group">
+                <label>Dispersion:</label>
+                <select id="dispersion_type">
+                  <option value="API 581" selected>API 581</option>
+                </select>
+              </div>
+
+              <div class="scrolling-notice">
+                PCC-3: time-to-empty (<2 min=Inst, 2–10 min=Trans, ≥10 min=Cont). API 581: hole ≤6.25 mm=Cont; else 4536 kg in ≤180 s OR mass>4536 kg emptied in ≤180 s=Inst.
+              </div>
+
+              <button type="button" class="btn btn-green-outline">Calculate All Holes</button>
+
+              <div class="results-placeholder">
+                Enter inputs and click Calculate
+              </div>
+
+            </div>
+          </div>
+
+        </div>

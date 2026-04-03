@@ -183,7 +183,6 @@
             border-color: #c45a11;
         }
 
-        /* Spanning full widths for specific elements if needed */
         .span-2 { grid-column: span 2; }
 
         @media (max-width: 1200px) {
@@ -223,103 +222,164 @@
         <p class="reference-text">Ref: API 580 (RBI program, equipment data); PCC-3 §5 Data and Information Collection</p>
 
         <div class="accordion-item">
-            <div class="accordion-header">
-                ▶ V-1001
-            </div>
+            <div class="accordion-header">▶ V-1001</div>
             <div class="accordion-content">
                 
                 <div class="toolbar">
                     <span style="color: #b04a00; font-weight: bold;">V-1001</span>
-                    <button>Refresh</button>
-                    <button>📋</button>
-                    <button>💾</button>
-                    <button>Save CSV</button>
-                    <button>Load</button>
-                    <span style="margin-left: 10px; font-weight: bold;">Equipment Tag <span>(API 580)</span>:</span>
-                    <input type="text" value="V-1001" style="width: 100px; padding: 3px;">
+                    <button onclick="checkConnection()">Refresh / Status</button>
+                    <button id="saveBtn" style="background-color: #fff3cd;">💾 Save to DB</button>
+                    <button id="loadBtn">Load Data</button>
+                    <span style="margin-left: 10px; font-weight: bold;">Equipment Tag:</span>
+                    <input type="text" id="tag" value="V-1001" style="width: 100px; padding: 3px;">
                 </div>
 
                 <div class="form-grid">
-                    
                     <div class="form-group">
                         <label>Vessel Name <span>(API 580)</span></label>
-                        <input type="text" value="Overhead Accumulator">
+                        <input type="text" id="vessel_name" value="Overhead Accumulator">
                     </div>
 
                     <div class="form-group">
                         <label>Description <span>(PCC-3 §5)</span></label>
-                        <input type="text" value="Overhead accumulator downstream of ai">
+                        <input type="text" id="description" value="Overhead accumulator downstream of ai">
                     </div>
 
                     <div class="form-group">
                         <label>Equipment Type <span>(API 581)</span></label>
-                        <select>
-                            <option>Pressure Vessel</option>
-                            <option>Heat Exchanger</option>
-                            <option>Piping</option>
+                        <select id="equipment_type">
+                            <option value="Pressure Vessel">Pressure Vessel</option>
+                            <option value="Heat Exchanger">Heat Exchanger</option>
+                            <option value="Piping">Piping</option>
                         </select>
                     </div>
 
                     <div class="form-group">
-                        <label>Site / Facility <span>(API 580, PCC-3 §5)</span></label>
-                        <select>
-                            <option>Horse Shoe Falls</option>
+                        <label>Site / Facility</label>
+                        <select id="site">
+                            <option value="Horse Shoe Falls">Horse Shoe Falls</option>
                         </select>
                     </div>
 
                     <div class="form-group">
                         <label>Unit / Area</label>
-                        <select>
-                            <option>Dehydration</option>
+                        <select id="unit">
+                            <option value="Dehydration">Dehydration</option>
                         </select>
                     </div>
 
                     <div class="form-group">
                         <label>System</label>
-                        <select>
-                            <option>System 1</option>
+                        <select id="system">
+                            <option value="System 1">System 1</option>
                         </select>
                     </div>
 
                     <div class="form-group">
-                        <label>Design Temperature (°C)</label>
-                        <input type="text" value="343">
+                        <label>Design Temp (°C)</label>
+                        <input type="number" id="design_temp" value="343">
                     </div>
 
                     <div class="form-group">
-                        <label>Design Pressure (MPa)</label>
-                        <input type="text" value="8.27">
+                        <label>Design Press (MPa)</label>
+                        <input type="number" id="design_press" step="0.01" value="8.27">
                     </div>
 
                     <div class="form-group">
-                        <label>Nominal Thickness (mm)</label>
-                        <input type="text" value="41.3">
+                        <label>Nominal Thick (mm)</label>
+                        <input type="number" id="nominal_thick" step="0.1" value="41.3">
                     </div>
 
                     <div class="form-group">
-                        <label>Corrosion Allowance (mm)</label>
-                        <input type="text" value="1.6">
+                        <label>Corrosion Allow (mm)</label>
+                        <input type="number" id="corrosion_allow" step="0.1" value="1.6">
                     </div>
 
                     <div class="form-group">
-                        <label>Operating Pressure (MPa)</label>
-                        <input type="text" value="7.584">
+                        <label>Operating Press (MPa)</label>
+                        <input type="number" id="operating_press" step="0.001" value="7.584">
                     </div>
 
                     <div class="form-group">
-                        <label>Operating Temperature (°C)</label>
-                        <input type="text" value="111">
+                        <label>Operating Temp (°C)</label>
+                        <input type="number" id="operating_temp" value="111">
                     </div>
 
                     <div class="form-group">
-                        <label>Vessel % liquid level</label>
-                        <input type="text" value="60">
+                        <label>Liquid Level (%)</label>
+                        <input type="number" id="liquid_level" value="60">
                     </div>
-
                 </div>
             </div>
         </div>
     </div>
 
+    <script>
+        // REPLACE WITH YOUR PUBLIC CODESPACE URL
+        const API_URL = "https://cuddly-spoon-q7wxjqjr6r4w2v9j-8000.app.github.dev";
+
+        // Connection Test
+        async function checkConnection() {
+            try {
+                const response = await fetch(`${API_URL}/`);
+                const data = await response.json();
+                alert("Connected to Backend: " + data.message);
+            } catch (err) {
+                alert("Connection Failed! Ensure port 8000 is PUBLIC in Codespaces.");
+            }
+        }
+
+        // SAVE DATA TO BACKEND
+        document.getElementById('saveBtn').onclick = async () => {
+            const assetData = {
+                tag: document.getElementById('tag').value,
+                vessel_name: document.getElementById('vessel_name').value,
+                description: document.getElementById('description').value,
+                equipment_type: document.getElementById('equipment_type').value,
+                site: document.getElementById('site').value,
+                unit: document.getElementById('unit').value,
+                system: document.getElementById('system').value,
+                design_temp: parseFloat(document.getElementById('design_temp').value),
+                design_press: parseFloat(document.getElementById('design_press').value),
+                nominal_thick: parseFloat(document.getElementById('nominal_thick').value),
+                corrosion_allow: parseFloat(document.getElementById('corrosion_allow').value),
+                operating_press: parseFloat(document.getElementById('operating_press').value),
+                operating_temp: parseFloat(document.getElementById('operating_temp').value),
+                liquid_level: parseFloat(document.getElementById('liquid_level').value)
+            };
+
+            try {
+                const response = await fetch(`${API_URL}/assets/`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(assetData)
+                });
+
+                if (response.ok) {
+                    alert("✅ Asset data saved to Supabase!");
+                } else {
+                    const errorData = await response.json();
+                    alert("❌ Server Error: " + JSON.stringify(errorData.detail));
+                }
+            } catch (err) {
+                alert("❌ Network Error: Could not reach backend.");
+            }
+        };
+
+        // LOAD DATA FROM BACKEND
+        document.getElementById('loadBtn').onclick = async () => {
+            const tag = document.getElementById('tag').value;
+            try {
+                const response = await fetch(`${API_URL}/test-db`);
+                const result = await response.json();
+                if (result.status === "connected") {
+                    console.log("Retrieved Data:", result.data);
+                    alert("Data for latest asset retrieved successfully! (Check Console for details)");
+                }
+            } catch (err) {
+                alert("Failed to load data.");
+            }
+        };
+    </script>
 </body>
 </html>
